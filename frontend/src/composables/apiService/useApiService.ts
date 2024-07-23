@@ -5,9 +5,11 @@ const baseURL = 'http://localhost:3000/books'
 
 export function useGetBooks() {
     const books = ref<Book[]>([])
+    const error = ref(null)
 
     const resetBooksRef = () => {
         books.value = []
+        error.value = null
     }
 
     fetch(baseURL, {
@@ -20,6 +22,7 @@ export function useGetBooks() {
         .then((res) => {
             books.value = res
         }).catch(err => {
+            error.value = err
             console.log(err)
         })
 
@@ -27,5 +30,5 @@ export function useGetBooks() {
         resetBooksRef();
     })
 
-    return { books }
+    return { books, error }
 }
