@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { useGetBooks } from '@/composables/apiService/useApiService';
-const { books } = useGetBooks();
+import BookCards from './BookCards.vue';
 </script>
 
 <template>
-    <h1>Books:</h1>
-    <ul>
-        <li v-for="book in books">
-            Title: {{ book.title }}, Description: {{ book.description }}
-        </li>
-    </ul>
+    <BookCards />
 </template>
 
 <style scoped>
