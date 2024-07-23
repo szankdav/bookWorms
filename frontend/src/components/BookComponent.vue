@@ -9,7 +9,9 @@ import BookCards from './BookCards.vue';
             <h3>Where motivation meets literature</h3>
         </div>
     </div>
-    <BookCards />
+    <div>
+        <BookCards />
+    </div>
     <!-- <div v-if="error === null">
         <h1>Books:</h1>
         <ul>
@@ -22,6 +24,7 @@ import BookCards from './BookCards.vue';
         <h1>Something happened, please come back later!</h1>
     </div> -->
 
+    </template>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
 
