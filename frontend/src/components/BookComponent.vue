@@ -3,7 +3,7 @@ import BookCards from './BookCards.vue';
 </script>
 
 <template>
-    <div class="container-fluid topLabel">
+    <div class="container-fluid topLabel mb-5">
         <div class="topLabelText">
             <h1>BookWorms</h1>
             <h3>Where motivation meets literature</h3>
@@ -12,6 +12,7 @@ import BookCards from './BookCards.vue';
     <div>
         <BookCards />
     </div>
+    
     <!-- <div v-if="error === null">
         <h1>Books:</h1>
         <ul>
@@ -45,6 +46,6 @@ import BookCards from './BookCards.vue';
     text-align: center;
     text-shadow: 2px 2px 2px #191416;
     background-color: #1914168c;
-    box-shadow: 0 0 50px black;
+    box-shadow: 0 0 50px 50px #1914168c;
 }
 </style>
