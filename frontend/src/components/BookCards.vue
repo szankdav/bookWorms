@@ -17,9 +17,9 @@ function loadDescription(id: number) {
     <div class="container">
         <div class="row">
             <div v-for="book in books" class="col-4">
-                <div class="card" style="width: 18rem;">
+                <div class="card">
                     <!--<img src="..." class="card-img-top" alt="...">-->
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         <h5 class="card-title">{{ book.title }}</h5>
                         <p class="card-text">{{ book.description }}</p>
                         <button @click="loadDescription(book.id)" class="btn btn-warning">Érdekel</button>
