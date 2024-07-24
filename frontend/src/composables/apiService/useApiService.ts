@@ -13,7 +13,7 @@ export function useGetBooks() {
     fetch(baseURL, {
         method: "GET",
         headers: {
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": "https://frontend-quiet-night-5362.fly.dev",
             "Accept": "application/json"
         }
     }).then(res => res.json())
