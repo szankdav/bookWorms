@@ -16,8 +16,8 @@ WORKDIR /app/backend
 # Install Node.js dependencies
 RUN npm install
 
-# Run the server
-CMD ["npm", "run", "start:prod"]
-
 # Expose the port the app runs on
 EXPOSE 3000
+
+# Run the server
+CMD ["npm", "run", "start:prod"]

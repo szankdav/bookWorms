@@ -1,10 +1,9 @@
-# fly.toml app configuration file generated for backend-thrumming-sky-6429 on 2024-07-23T14:14:05+02:00
+# fly.toml app configuration file generated for backend-nameless-morning-2143 on 2024-07-24T21:09:06+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'backend-thrumming-sky-6429'
-primary_region = 'ams'
+app = 'backend-nameless-morning-2143'
 
 [build]
 
