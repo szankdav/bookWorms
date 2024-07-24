@@ -1,23 +1,28 @@
-# Use an official Node.js runtime as a parent image
-FROM node:16
-
-# Install Git
-RUN apt-get update && apt-get install -y git
-
-# Set the working directory
-WORKDIR /app
-
-# Clone the latest code from GitHub
-RUN git clone https://github.com/szankdav/bookWorms.git .
-
-# Set the working directory to the backend folder inside the cloned repo
-WORKDIR /app/backend
-
-# Install Node.js dependencies
+# Line 1
+FROM node:20-alpine as builder
+# Line 2
+ENV NODE_ENV build
+# Line 3
+WORKDIR /api
+# Line 4
+COPY package*.json ./
+# Line 5
 RUN npm install
+# Line 6
+COPY . .
+# Line 7
+RUN npm run build \
+    && npm prune --production
 
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Run the server
-CMD ["npm", "run", "start:prod"]
+# Line 8
+FROM node:20-alpine
+# Line 9
+ENV NODE_ENV production
+# Line 10
+WORKDIR /api
+# Line 11
+COPY --from=builder  /api/package*.json ./
+COPY --from=builder  /api/node_modules/ ./node_modules/
+COPY --from=builder  /api/dist/ ./dist/
+# Line 12
+CMD ["node", "dist/src/main.js"]
