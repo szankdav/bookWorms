@@ -18,3 +18,6 @@ RUN npm install
 
 # Run the server
 CMD ["npm", "run", "start:prod"]
+
+# Expose the port the app runs on
+EXPOSE 3000
