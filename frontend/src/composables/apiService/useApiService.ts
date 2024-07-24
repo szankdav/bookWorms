@@ -1,7 +1,7 @@
 import type { Book } from "@/models/Book";
 import { ref, watchEffect } from "vue";
 
-const baseURL = 'https://backend-thrumming-sky-6429.fly.dev/books'
+const baseURL = 'http://localhost:3000/books'
 
 export function useGetBooks() {
     const books = ref<Book[]>([])
@@ -13,7 +13,7 @@ export function useGetBooks() {
     fetch(baseURL, {
         method: "GET",
         headers: {
-            "Access-Control-Allow-Origin": "https://frontend-quiet-night-5362.fly.dev",
+            "Access-Control-Allow-Origin": "*",
             "Accept": "application/json"
         }
     }).then(res => res.json())
