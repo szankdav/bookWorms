@@ -1,20 +1,42 @@
-# Use an official Node.js runtime as a parent image
-FROM node:16
+# syntax = docker/dockerfile:1
 
-# Install Git
-RUN apt-get update && apt-get install -y git
+# Adjust NODE_VERSION as desired
+ARG NODE_VERSION=18.18.0
+FROM node:${NODE_VERSION}-slim as base
 
-# Set the working directory
+LABEL fly_launch_runtime="NestJS"
+
+# NestJS app lives here
 WORKDIR /app
 
-# Clone the latest code from GitHub
-RUN git clone https://github.com/szankdav/bookWorms.git .
+# Set production environment
+ENV NODE_ENV="production"
 
-# Set the working directory to the backend folder inside the cloned repo
-WORKDIR /app/backend
 
-# Install Node.js dependencies
-RUN npm install
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
-# Run the server
-CMD ["npm", "run", "start:dev"]
+# Install packages needed to build node modules
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
+
+# Install node modules
+COPY --link package-lock.json package.json ./
+RUN npm ci --include=dev
+
+# Copy application code
+COPY --link . .
+
+# Build application
+RUN npm run build
+
+
+# Final stage for app image
+FROM base
+
+# Copy built application
+COPY --from=build /app /app
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD [ "npm", "run", "start" ]
