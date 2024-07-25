@@ -18,3 +18,5 @@ RUN npm install
 
 # Run the server
 CMD ["npm", "run", "start:dev"]
+
+EXPOSE 0.0.0.0:8080
